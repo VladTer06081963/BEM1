@@ -1,17 +1,23 @@
-/* :root {
+:root {
   --black: #263238;
   --base: #baef00;
   --stroke: #e3e3e3;
-  --hover: null;
-} */
+  --hover: #66ec36; /* Добавил значение для hover */
+  --primary: #3bca09;
+  --primary-active: #2fa803;
+  --text-light: wheat;
+  --text-gray: #999;
+}
 
 *,
 *::before,
 *::after {
-  box-sizing: inherit;
+  box-sizing: border-box; /* Исправил inherit → border-box (более предсказуемо) */
 }
+
 a {
   color: inherit;
+  text-decoration: none; /* Часто нужно для кнопок-ссылок */
 }
 
 body {
@@ -20,42 +26,53 @@ body {
   background-color: #f1f1f1;
 }
 
-/* кнопка */
-
+/* Кнопка (переиспользуемый блок) */
 .btn {
+  --btn-bg: var(--primary);
+  --btn-hover: var(--hover);
+  --btn-active: var(--primary-active);
+
   border: none;
   outline: none;
   border-radius: 10px;
+  margin-bottom: 30px; /* Отступ после кнопки */
   padding: 13px 20px;
-  background-color: #3bca09;
-  color: wheat;
+  background-color: var(--btn-bg);
+  color: var(--text-light);
   transition: background-color 0.3s;
+  cursor: pointer;
 }
 
 .btn:hover {
-  background-color: #66ec36;
+  background-color: var(--btn-hover);
 }
+
 .btn:active {
-  background-color: #2fa803;
+  background-color: var(--btn-active);
 }
-.btn:focus {
-  outline: 1px solid #3bca09;
+
+.btn:focus-visible { /* Лучше :focus-visible для accessibility */
+  outline: 1px solid var(--btn-bg);
   outline-offset: 3px;
 }
-/* рейтинг */
+
+/* Рейтинг (оптимизированная версия) */
 .rating {
   display: flex;
+  gap: 5px; /* Замена margin-right */
+  margin-bottom: 30px; /* Отступ после кнопки */
 }
-.rating__star:not(:last-child) {
-  margin-right: 5px;
-  /* -color: white;
-  border-radius: 15px;
-  overflow: hidden;background */
+
+.rating__star {
+  width: 20px;
+  height: 20px;
+  object-fit: cover; /* На случай изменения размеров */
 }
-/* Карточка */
+
+/* Карточка (улучшенная структура) */
 .card {
-  width: 374px;
-  min-width: 440px;
+  max-width: 440px; /* Лучше max-width, чем min-width */
+  width: 100%;
   background-color: white;
   border-radius: 15px;
   overflow: hidden;
@@ -75,17 +92,15 @@ body {
 .card__price-rating {
   margin-bottom: 20px;
   display: flex;
-  justify-content: space-between;
+  align-items: center; /* Чтобы цена и рейтинг были на одной линии */
 }
 
 .card__price {
   font-size: 20px;
   font-weight: 700;
+  margin-right: auto; /* Отталкивает рейтинг вправо */
 }
 
-.card__raiting {
-  margin-left: 20px;
-}
 .card__title {
   margin-bottom: 15px;
   font-size: 15px;
@@ -96,5 +111,9 @@ body {
   display: block;
   margin-bottom: 18px;
   font-size: 16px;
-  color: #999;
+  color: var(--text-gray);
+}
+
+.card__btn {
+  width: 100%; /* Кнопка на всю ширину карточки */
 }
