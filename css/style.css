@@ -35,7 +35,7 @@ body {
   border: none;
   outline: none;
   border-radius: 10px;
-  margin-bottom: 30px; /* Отступ после кнопки */
+  /* margin-bottom: 30px; Отступ после кнопки */
   padding: 13px 20px;
   background-color: var(--btn-bg);
   color: var(--text-light);
@@ -60,7 +60,7 @@ body {
 .rating {
   display: flex;
   gap: 5px; /* Замена margin-right */
-  margin-bottom: 30px; /* Отступ после кнопки */
+  /* margin-bottom: 30px; Отступ после кнопки */
 }
 
 .rating__star {
@@ -68,7 +68,9 @@ body {
   height: 20px;
   object-fit: cover; /* На случай изменения размеров */
 }
-
+.section {
+  margin-bottom: 30px;
+}
 /* Карточка (улучшенная структура) */
 .card {
   max-width: 440px; /* Лучше max-width, чем min-width */
